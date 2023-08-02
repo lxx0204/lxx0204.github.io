@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN" style="height: 100%">
+<head>
+  <meta charset="utf-8">
+</head>
+<body style="height: 100%; margin: 0">
+  <div id="container" style="height: 100%"></div>
+ <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+  <script type="text/javascript">
+    var dom = document.getElementById('container');
+    var myChart = echarts.init(dom, null, {
+      renderer: 'canvas',
+      useDirtyRect: false
+    });
+    var app = {};
+    
+    var option;
+
+
+const colors = ['#5470C6', '#91CC75','#EE6666'];
+option = {
+  
+  
+  color: colors,
+  
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'cross'
+   
+    }
+  },
+  
+  
+  grid: {
+    right: '5%',
+    left:'5%',
+    bottom:'3%',
+    top:'20%'
+  },
+  toolbox: {
+    feature: {
+      dataView: { show: true, readOnly: false },
+      restore: { show: true },
+      saveAsImage: { show: true }
+    }
+  },
+  legend: {   
+        padding:[115,0,0,50],     
+  },
+  
+  
+  
+  xAxis: [
+    {
+      type: 'category',
+      axisTick: {
+        alignWithLabel: true
+      },
+      // prettier-ignore
+      data: ['2005','2006','2007','2008','2009','2010','2011','2012','2013','2014','2015','2016','2017','2018','2019','2020','2021','2022']
+    }
+    
+  ],
+  yAxis: [
+    {
+        type: 'value',
+        max : 100000,
+            min : 0,
+            splitNumber : 8,
+      
+        name: ' ',
+        position: 'right',
+        alignTicks: true,
+        axisLine: {
+               show: true,
+                lineStyle: {
+                              color: colors[0]
+                             }
+                  },
+       axisLabel: {
+                  formatter: '{value} '
+                  }
+    },
+    ,
+    {
+      type: 'value',
+      name: ' ',
+     
+      position: 'left',
+      alignTicks: true,
+      max:1,
+      min:0,
+      axisLine: {
+        show: true,
+        lineStyle: {
+          color: colors[2]
+        }
+      },
+      axisLabel: {
+        formatter: '{value}'
+      }
+    }
+  ],
+  series: [
+    {
+      name: '原油进口量',
+      type: 'bar',
+      barWidth: 5,
+      stack: 'Search Engine',
+      emphasis: {
+        focus: 'series'
+      },
+      data: [12682,14517,16316,17888,20365,23768,25378,27103,28174,30837,33548,38104,41957,46190,50572,54238,51298,50828]
+    },
+    {
+      name: '原油生产量',
+      type: 'bar',
+      stack: 'Search Engine',
+      emphasis: {
+        focus: 'series'
+      },
+      data: [17318,17783,18284,18612,18435,20132,20022,20497,20626,20963,21452,19996,19043,13810,19028,19362,19900,20400]
+    },
+    {
+      name: '原油对外依存度',
+      type: 'line',
+      yAxisIndex: 2,
+      data: [0.3897,0.4156,0.4451,0.4791,0.5266,0.5389,0.5563,0.5670,0.5638,0.5946,0.5995,0.6604,0.6945,0.7421,0.7839,0.8292,0.7566,0.7506]
+    }
+  ]
+};
+
+
+if (option && typeof option === 'object') {
+      myChart.setOption(option);
+    }
+
+    window.addEventListener('resize', myChart.resize);
+
+    if (option && typeof option === 'object') {
+      myChart.setOption(option);
+    }
+
+    window.addEventListener('resize', myChart.resize);
+  </script>
+</body>
+</html>
